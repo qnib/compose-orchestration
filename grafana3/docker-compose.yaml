@@ -1,0 +1,19 @@
+version: '2'
+services:
+  grafana3: #1
+    image: qnib/alpn-grafana3
+    hostname: grafana
+    container_name: grafana
+    networks:
+     - compose-net
+    environment:
+     - DC_NAME=compose
+     - COLLECT_METRICS=false
+     - CONSUL_CLUSTER_IPS=consul
+     - CONSUL_NODE_NAME=grafana3
+    ports:
+     - 3000:3000
+
+networks:
+  compose-net:
+    external: true
