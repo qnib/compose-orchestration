@@ -2,6 +2,8 @@ version: '2'
 services:
   consul: 
     image: qnib/alpn-consul
+    hostname: consul
+    container_name: consul
     ports:
       - 8500
     networks:
@@ -15,4 +17,4 @@ services:
 
 networks:
   compose-net:
-    driver: bridge
+    external: true
