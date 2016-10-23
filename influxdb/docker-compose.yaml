@@ -1,0 +1,23 @@
+version: '2'
+services:
+  influxdb:
+    image: qnib/influxdb
+    hostname: influxdb
+    container_name: influxdb
+    networks:
+     - compose-net
+    environment:
+     - DC_NAME=compose
+     - CONSUL_NODE_NAME=influxdb
+     - COLLECT_METRICS=false
+     - INFLUXDB_DATABASES=qcollect,prometheus
+     - CONSUL_CLUSTER_IPS=consul
+     - INFLUXDB_META_LOGGING=false
+    ports:
+     - 2003:2003
+     - 8083:8083
+     - 8086:8086
+
+networks:
+  compose-net:
+    external: true
