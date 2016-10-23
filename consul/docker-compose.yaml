@@ -1,0 +1,18 @@
+version: '2'
+services:
+  consul: 
+    image: qnib/alpn-consul
+    ports:
+      - 8500
+    networks:
+      - compose-net
+    environment:
+      - DC_NAME=compose
+      - CONSUL_BOOTSTRAP_EXPECT=1
+      - CONSUL_SKIP_CURL=true
+      # if more then one service is started, this is going to cause trouble
+      - CONSUL_NODE_NAME=consul
+
+networks:
+  compose-net:
+    driver: bridge
